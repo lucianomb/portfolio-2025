@@ -3,8 +3,10 @@ import Bulb from "../../components/Bulb";
 import WorkSlider from "../../components/WorkSlider";
 import {motion} from "framer-motion";
 import {fadeIn} from "../../variants";
+import {useTranslation} from "../../locales";
 
 const Work = () => {
+  const t = useTranslation();
   return <div className='h-full bg-primary/30 py-36 flex items-center' >
     <Circles />
     <div className="container mx-auto">
@@ -16,14 +18,14 @@ const Work = () => {
               initial='hidden'
               animate='show'
               exit='hidden'
-              className='h2 xl:mt-12'>My work <span className="text-accent">.</span></motion.h2>
+              className='h2 xl:mt-12'>{t.work.title}<span className="text-accent">.</span></motion.h2>
           <motion.p
               variants={fadeIn('up', 0.4)}
               initial='hidden'
               animate='show'
               exit='hidden'
               className="mb-4 max-w-[400px] mx-auto lg:mx-0">
-            From designing a website to creating a brand identity, I can help you with all your digital needs. I have worked with clients from various industries and have helped them achieve their goals.
+            {t.work.description}
           </motion.p>
         </div>
         {/* slider */}

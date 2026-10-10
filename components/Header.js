@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Socials from "./Socials";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
   return <header className='absolute z-30 w-full flex items-center px-16 xl:px-0 xl:h-[90px]'>
@@ -9,7 +10,10 @@ const Header = () => {
         <Link href={'/'}>
           <Image className='object-center object-contain' src={'/lmb.svg'} alt='logo' width={245} height={34} priority={true} />
         </Link>
-        <Socials />
+        <div className='flex items-center gap-x-8'>
+          <Socials />
+          <LanguageSwitcher />
+        </div>
       </div>
     </div>
   </header>;

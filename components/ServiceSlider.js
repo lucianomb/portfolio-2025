@@ -8,43 +8,22 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import {useTranslation} from "../locales";
 
-// data
-const serviceData = [
-  {
-    title: 'Custom Web Development with NextJS and React',
-    icon: <RxCode />,
-    description: 'I create high-performance websites using the latest NextJS and React technologies. Whether you need a dynamic web app or a content-heavy site, I’ll ensure speed, scalability, and seamless user experience.',
-  },
-  {
-    title: 'Interactive 3D Animations with Three.js',
-    description: 'Bring your website to life with stunning 3D animations. I use Three.js to deliver unique, interactive experiences that captivate your users and set your site apart from the rest.',
-      icon: <RxCube />
-  },
-    {
-        title: 'Mobile App Development with Flutter and React Native',
-        description: 'Need a mobile app for both iOS and Android? I can build cross-platform apps using Flutter or React Native that offer smooth performance and a great user experience.',
-        icon: <RxMobile />
-    },
-    {
-        title: 'WordPress Development and Customization',
-        description: 'I specialize in building custom WordPress sites, whether it’s an e-commerce store, blog, or corporate website. I’ll tailor your WordPress site to your needs with responsive themes, plugins, and seamless integration.',
-        icon: <RxGlobe />
-    },
-    {
-        title: 'Full Stack Development with Seamless Backend Integration',
-        description: 'From server-side development to database management, I offer complete full-stack web development. I ensure smooth backend integration with your front-end, so everything works seamlessly.',
-        icon: <RxStack />
-    },
-    {
-        title: 'Next-Level UI/UX Design and Web Animation',
-        description: 'Enhance user engagement with modern UI/UX design. I integrate smooth animations and modern interfaces to create websites that not only look great but are easy to navigate.',
-        icon: <RxPencil2 />
-    }
-
+// icons, in the same order as the services in the locale files
+const serviceIcons = [
+  <RxCode key={0} />,
+  <RxCube key={1} />,
+  <RxMobile key={2} />,
+  <RxGlobe key={3} />,
+  <RxStack key={4} />,
+  <RxPencil2 key={5} />,
 ];
 
 const ServiceSlider = () => {
+  const t = useTranslation();
+  const serviceData = t.services.items.map((item, index) => ({...item, icon: serviceIcons[index]}));
+
   return <Swiper
       breakpoints={{
         320: {

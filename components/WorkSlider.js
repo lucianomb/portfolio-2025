@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import Image from "next/image";
 import {BsArrowRight} from "react-icons/bs";
 import Link from "next/link";
+import {useTranslation} from "../locales";
 
 // data
 const workSlides = {
@@ -63,6 +64,7 @@ const workSlides = {
 };
 
 const WorkSlider = () => {
+  const t = useTranslation();
   return <Swiper
       spaceBetween={10}
       pagination={{
@@ -85,9 +87,9 @@ const WorkSlider = () => {
                <div className='absolute bottom-0 translate-y-full group-hover:-translate-y-10 group-hover:xl:-translate-y-20 transition-all duration-300'>
                  <Link href={image.url} target='_blank' className='flex items-center gap-x-2 text-[13px] tracking-[0.2em]'>
                    {/*title part 1*/}
-                   <div className='delay-100'>LIVE</div>
+                   <div className='delay-100'>{t.work.liveLabel1}</div>
                    {/*title part 2*/}
-                   <div className='translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150'>PROJECT</div>
+                   <div className='translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150'>{t.work.liveLabel2}</div>
                    {/*icon */}
                    <div className='text-xl translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-200'>
                      <BsArrowRight />

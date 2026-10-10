@@ -22,90 +22,46 @@ import {fadeIn} from "../../variants";
 import CountUp from "react-countup";
 import {BiLogoAndroid} from "react-icons/bi";
 import {TbBrandThreejs} from "react-icons/tb";
+import {useTranslation} from "../../locales";
 
-//  data
-const aboutData = [
-  {
-    title: 'skills',
-    info: [
-      {
-        title: 'Full Stack Web Development',
-        icons: [
-          <FaHtml5 key={0} />,
-          <FaCss3 key={1} />,
-          <FaJs key={2} />,
-          <FaReact key={3} />,
-          <SiNextdotjs key={4} />,
-          <SiFramer key={5} />,
-          <SiTailwindcss key={6} />,
-          <SiTypescript key={7} />,
-          <TbBrandThreejs key={8} />,
-        ],
-      },
-      {
-        title: 'Wordpress Development',
-        icons: [
-          <FaWordpress key={9} />,
-          <FaElementor key={10} />,
-          <SiWpengine key={11} />,
-        ],
-      },
-      {
-        title: 'Mobile App Development',
-        icons: [
-          <SiApple key={12} />,
-          <BiLogoAndroid key={13} />,
-          <SiFlutter key={14} />,
-        ],
-      },
-      {
-        title: 'UI/UX Design',
-        icons: [<FaFigma key={15} />, <SiAdobexd key={16} />, <SiAdobephotoshop key={17} />],
-      },
-    ],
-  },
-  {
-    title: 'experience',
-    info: [
-      {
-        title: 'Full Stack Developer - Freelancer',
-        stage: '2016 - Present',
-      },
-      {
-        title: 'Front End Web Developer - Tail Digital',
-        stage: '2013 - 2016',
-      },
-      {
-        title: 'Full Stack Web Developer - Folha de S. Paulo',
-        stage: '2012 - 2013',
-      },
-      {
-        title: 'Web Developer - IBM',
-        stage: '2011 - 2012',
-      },
-      {
-        title: 'Web Designer - Freelancer',
-        stage: '2004 - 2011',
-      }
-    ],
-  },
-  {
-    title: 'credentials',
-    info: [
-      {
-        title: 'Credly / Upwork Skill Certification - JS Front-End Development',
-        stage: '2020',
-      },
-      {
-        title: 'Multimedia Production - Universidade Metodista de São Paulo, Brazil',
-        stage: '2015',
-      },
-    ],
-  },
+//  skill icons, in the same order as the skills in the locale files
+const skillIcons = [
+  [
+    <FaHtml5 key={0} />,
+    <FaCss3 key={1} />,
+    <FaJs key={2} />,
+    <FaReact key={3} />,
+    <SiNextdotjs key={4} />,
+    <SiFramer key={5} />,
+    <SiTailwindcss key={6} />,
+    <SiTypescript key={7} />,
+    <TbBrandThreejs key={8} />,
+  ],
+  [
+    <FaWordpress key={9} />,
+    <FaElementor key={10} />,
+    <SiWpengine key={11} />,
+  ],
+  [
+    <SiApple key={12} />,
+    <BiLogoAndroid key={13} />,
+    <SiFlutter key={14} />,
+  ],
+  [<FaFigma key={15} />, <SiAdobexd key={16} />, <SiAdobephotoshop key={17} />],
 ];
 
 const About = () => {
   const [index, setIndex] = useState(0);
+  const t = useTranslation();
+  const {skills, experience, credentials} = t.about.tabs;
+  const aboutData = [
+    {
+      title: skills.title,
+      info: skills.info.map((title, i) => ({title, icons: skillIcons[i]})),
+    },
+    experience,
+    credentials,
+  ];
 
   return <div className='h-full bg-primary/30 py-32 text-center xl:text-left'>
     <Circles />
@@ -125,15 +81,14 @@ const About = () => {
           initial='hidden'
           animate='show'
           exit='hidden'
-          className='h2'>About <span className='text-accent'>Me</span></motion.h2>
+          className='h2'>{t.about.title}<span className='text-accent'>{t.about.titleAccent}</span></motion.h2>
         <motion.p
           variants={fadeIn('right', 0.4)}
           initial='hidden'
           animate='show'
           exit='hidden'
           className='max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0'>
-          10 years ago I decided it was time to go solo and start my freelancer career.
-            Since then, I&apos;ve worked with clients from all over the world, providing them with high-quality websites and user interfaces.
+          {t.about.description}
         </motion.p>
         {/* counters */}
         <motion.div
@@ -148,21 +103,21 @@ const About = () => {
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={15} duration={5} /> +
               </div>
-              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Years of experience</div>
+              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>{t.about.counters.experience}</div>
             </div>
             {/* clients */}
             <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={150} duration={5} /> +
               </div>
-              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Satisfied Clients</div>
+              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>{t.about.counters.clients}</div>
             </div>
             {/* projects */}
             <div className="relative flex-1">
               <div className='text-2xl xl:text-4xl font-extrabold text-accent mb-2'>
                 <CountUp start={0} end={300} duration={5} /> +
               </div>
-              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>Finished Projects</div>
+              <div className='text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]'>{t.about.counters.projects}</div>
             </div>
             {/* awards */}
             {/*<div className="relative flex-1">*/}

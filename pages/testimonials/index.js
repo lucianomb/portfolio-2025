@@ -1,8 +1,10 @@
 import TestimonialSlider from "../../components/TestimonialSlider";
 import {motion} from "framer-motion";
 import {fadeIn} from "../../variants";
+import {useTranslation} from "../../locales";
 
 const Testimonials = () => {
+  const t = useTranslation();
   return <div className='h-full bg-primary/30 py-32 text-center'>
     <div className='container mx-auto h-full flex flex-col justify-center'>
       {/*title*/}
@@ -12,7 +14,7 @@ const Testimonials = () => {
         animate='show'
         exit='hidden'
         className='h2 mb-8 xl:mb-0'>
-        What customers <span className="text-accent">say.</span>
+        {t.testimonials.title}<span className="text-accent">{t.testimonials.titleAccent}</span>
       </motion.h2>
       {/*slider*/}
        <motion.div

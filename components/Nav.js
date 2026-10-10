@@ -9,6 +9,7 @@ import {
 } from 'react-icons/hi2';
 import Link from "next/link";
 import {useRouter} from "next/router";
+import {useTranslation} from "../locales";
 
 // nav data
 export const navData = [
@@ -30,6 +31,7 @@ export const navData = [
 
 const Nav = () => {
   const router = useRouter();
+  const t = useTranslation();
   const pathname = router.pathname;
   return <nav className='flex flex-col items-center xl:justify-center gap-y-4 fixed h-max bottom-0 mt-auto xl:right-[2%] z-50 top-0 w-full xl:w-16 xl:max-w-md xl:h-screen'>
     {/* inner */}
@@ -41,7 +43,7 @@ const Nav = () => {
           {/* tooltip */}
           <div className='absolute pr-14 right-0 hidden xl:group-hover:flex'>
             <div className="bg-white relative flex text-primary items-center p-[6px] rounded-[3px]">
-              <div className="text-[12px] leading-none font-semibold capitalize">{link.name}</div>
+              <div className="text-[12px] leading-none font-semibold capitalize">{t.nav[link.name]}</div>
               {/* triangle */}
               <div className="border-solid border-l-white border-l-8 border-y-transparent border-y-[6px] border-r-0 absolute -right-2"></div>
             </div>

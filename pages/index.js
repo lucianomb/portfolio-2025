@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 import Avatar from "../components/Avatar";
 import ParticlesContainer from "../components/ParticlesContainer";
+import {useTranslation} from "../locales";
 
 const Home = () => {
+  const t = useTranslation();
   return <div className='bg-primary/60 h-full'>
     {/* text */}
     <div className='w-full h-full bg-gradient-to-r from-primary/10 via-black/30 to-black/10 '>
@@ -16,7 +18,7 @@ const Home = () => {
             animate='show'
             exit='hidden'
             className='h1'
-        >Bringing Your Ideas <br /> to <span className='text-accent'>Real Life</span></motion.h1>
+        >{t.home.titleLine1} <br /> {t.home.titleLine2}<span className='text-accent'>{t.home.titleAccent}</span></motion.h1>
         <motion.p
             variants={fadeIn('down', 0.3)}
             initial='hidden'
@@ -24,7 +26,7 @@ const Home = () => {
             exit='hidden'
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
         >
-            I am a web developer with a passion for creating beautiful, responsive websites that are easy to use and maintain. I specialize in front-end development, but I also have experience with back-end technologies. I can help you bring your ideas to life.
+            {t.home.description}
         </motion.p>
         <div className="flex justify-center xl:hidden relative z-10">
           <ProjectsBtn />

@@ -5,37 +5,22 @@ const testimonialData = [
   {
     image: '/brendan.jpeg',
     name: 'Brendan M.',
-    position: 'Customer',
-    message:
-      '⭐️⭐️⭐️⭐️⭐️ Luciano was great! He came in and quickly executed several WordPress development projects with awesome quality. His speed of execution and professionalism were much appreciated. He handled everything efficiently, and his expertise really showed in the pages he worked on. We couldn’t be happier with his work and highly recommend him to anyone in need of a skilled developer!',
   },
   {
     image: 'https://avatar.iran.liara.run/public/girl?username=ah',
     name: 'A. H.',
-    position: 'Customer',
-    message:
-      'The best indeed! Highly reliable and efficient! Completed my website flawlessly and always delivered promptly with high precision. Luciano’s commitment and delivery are truly impressive. I am very happy with the results :) Certainly a pleasure to work with!',
   },
   {
     image: 'https://avatar.iran.liara.run/public/boy?username=va',
     name: 'VirtualAd',
-    position: 'Customer',
-    message:
-      'Luciano helped us fix an urgent malware issue with our Wordpress website. There was a lot of spam/malware installed by a hacker, where people were getting redirected to a spammy link. He fixed it quickly and prioritized the project + gave us great recommendation on prevention of things like this moving forward. Thanks Luciano!',
   },
   {
     image: '/martin.jpeg',
     name: 'Martin K.',
-    position: 'Customer',
-    message:
-      'Luciano did a great job, were in a jam because our previous partner had bailed on us, but Luciano came in and saved the day. He was extremely responsive with our client, and got the job done with time to spare!',
   },
   {
     image: 'https://avatar.iran.liara.run/public/boy?username=tb',
     name: 'Tim B.',
-    position: 'Customer',
-    message:
-      'Luciano has been a terrific partner for my company. It\'s great to work with people you can trust.',
   },
 ];
 
@@ -46,8 +31,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from "next/image";
+import {useTranslation} from "../locales";
 
 const TestimonialSlider = () => {
+  const t = useTranslation();
   return <Swiper
       navigation={true}
       pagination={{
@@ -70,7 +57,7 @@ const TestimonialSlider = () => {
               <div className='text-lg'>{person.name}</div>
               {/*position*/}
               <div className='text-[12px] uppercase font-extralight tracking-widest'>
-                {person.position}
+                {t.testimonials.position}
               </div>
             </div>
           </div>
@@ -81,7 +68,7 @@ const TestimonialSlider = () => {
               <FaQuoteLeft className='text-4xl xl:text-6xl text-white/20 mx-auto md:mx-0' />
             </div>
             {/*message*/}
-            <div className='xl:text-lg text-center md:text-left'>{person.message}</div>
+            <div className='xl:text-lg text-center md:text-left'>{t.testimonials.messages[index]}</div>
           </div>
         </div>
       </SwiperSlide>
