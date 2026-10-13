@@ -9,8 +9,19 @@ const nextConfig = {
     localeDetection: false,
     domains: [
       { domain: 'lucianomb.it', defaultLocale: 'en' },
-      { domain: 'lucianomb.es', defaultLocale: 'es' },
+      { domain: 'www.lucianomb.es', defaultLocale: 'es' },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:locale(en|es)/:path*',
+        has: [{ type: 'host', value: 'lucianomb.es' }],
+        destination: 'https://www.lucianomb.es/:path*',
+        permanent: true,
+        locale: false,
+      },
+    ];
   },
   images: {
     remotePatterns: [
